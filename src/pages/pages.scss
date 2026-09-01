@@ -60,22 +60,21 @@
 
 .hero-title__stat {
   display: block;
-  font-family: "Anton", var(--font-display);
-  font-weight: 400;
-  font-size: clamp(3.6rem, 8.5vw, 8.2rem);
-  letter-spacing: -0.01em;
-  line-height: 0.92;
-  text-shadow: 0 10px 34px rgba(0, 0, 0, 0.4);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 5vw, 4.4rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
 }
 
 .hero-title__lead {
-  display: inline-block;
+  display: inline;
   margin-right: 0.1em;
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 0.32em;
-  letter-spacing: -0.01em;
-  vertical-align: 0.16em;
+  font-weight: 700;
+  font-size: 1em;
+  letter-spacing: -0.02em;
 }
 
 .hero-title__stat .marker-highlight {
@@ -96,9 +95,9 @@
 
 .hero-title__line {
   display: block;
-  margin-top: 16px;
+  margin-top: 8px;
   font-family: var(--font-display);
-  font-size: clamp(1.9rem, 3.6vw, 3.3rem);
+  font-size: clamp(2.4rem, 5vw, 4.4rem);
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.1;
