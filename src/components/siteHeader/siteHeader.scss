@@ -76,7 +76,12 @@
   font-size: 0.87rem;
   font-weight: 800;
   white-space: nowrap;
+  transition: background-color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
 }
+
+/* Mismo acento amarillo que usa el subrayado de .nav-link al pasar el mouse. */
+.cart-link:hover { background: var(--vicaria-yellow); }
+.cart-link:active { transform: scale(0.94); }
 
 .cart-link__icon {
   width: 21px;
@@ -118,6 +123,7 @@
 
 /* Las tres barras se convierten suavemente en una X cuando el menú está abierto. */
 .menu-button:hover { transform: translateY(-1px); box-shadow: 0 9px 20px rgba(0, 0, 0, 0.22); }
+.menu-button:active { transform: scale(0.94); }
 .menu-button:focus-visible { outline: 3px solid var(--vicaria-yellow); outline-offset: 3px; }
 .menu-button span {
   width: 23px;

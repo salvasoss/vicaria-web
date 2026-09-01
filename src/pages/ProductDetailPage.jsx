@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { QuantityPicker } from "../components/quantityPicker/QuantityPicker";
 import { ProductCard } from "../components/productCard/ProductCard";
@@ -12,11 +12,23 @@ export const ProductDetailPage = () => {
   const product = products.find((item) => item.id === Number(itemId));
   const [quantity, setQuantity] = useState(1);
   const { addItem } = useCart();
+  // Da una confirmación visual breve en el propio botón, además del toast global.
+  const [isAdded, setIsAdded] = useState(false);
+  const addedTimeoutRef = useRef(null);
 
   useEffect(() => {
     // Al pasar a otro producto relacionado, reinicia el selector en una caja.
     setQuantity(1);
   }, [itemId]);
+
+  useEffect(() => () => clearTimeout(addedTimeoutRef.current), []);
+
+  const handleAddToCart = () => {
+    addItem(product.id, quantity);
+    setIsAdded(true);
+    clearTimeout(addedTimeoutRef.current);
+    addedTimeoutRef.current = setTimeout(() => setIsAdded(false), 260);
+  };
 
   if (!product) {
     return (
@@ -54,7 +66,6 @@ export const ProductDetailPage = () => {
           <img src={product.image} alt={`Caja de ${product.name} Vicaria`} />
         </div>
         <div className="product-detail__info">
-          <span className="eyebrow">Venta por caja</span>
           <h1>{product.name}</h1>
           <h2><span className="text-green">{product.subtitle}</span></h2>
           <p className="product-detail__description">{product.description}</p>
@@ -65,7 +76,7 @@ export const ProductDetailPage = () => {
           {getBoxContent(product) && <p className="product-detail__pack">Cada caja contiene <strong>{getBoxContent(product)}</strong> de {product.name}.</p>}
           <QuantityPicker value={quantity} onChange={setQuantity} />
           <div className="product-detail__actions">
-            <button className="button button--red" type="button" onClick={() => addItem(product.id, quantity)}>Agregar al carrito</button>
+            <button className={`button button--red${isAdded ? " is-added" : ""}`} type="button" onClick={handleAddToCart}>Agregar al carrito</button>
             <a className="button button--green" href={createWhatsAppUrl(whatsappMessage)} target="_blank" rel="noopener noreferrer">Pedir por WhatsApp</a>
           </div>
           <Link className="button button--outline wholesale-detail-button" to="/contacto">
@@ -77,14 +88,12 @@ export const ProductDetailPage = () => {
       <section className="section section--soft">
         <div className="container detail-columns">
           <article>
-            <span className="eyebrow">Ventajas</span>
             <h2>Beneficios del producto</h2>
             <ul className="check-list">
               {product.benefits.map((benefit) => <li key={benefit}>{benefit}</li>)}
             </ul>
           </article>
           <article>
-            <span className="eyebrow">Aplicación</span>
             <h2>Modo de uso</h2>
             <ol className="steps-list">
               {product.instructions.map((instruction, index) => <li key={instruction}><span>{index + 1}</span><p>{instruction}</p></li>)}
@@ -96,7 +105,6 @@ export const ProductDetailPage = () => {
       <section className="section related-products">
         <div className="container">
           <div className="section-heading related-products__heading">
-            <span className="eyebrow">También te puede interesar</span>
             <h2>Productos <span className="text-green">relacionados.</span></h2>
             <p>Conocé los demás productos Vicaria para el sistema de enfriamiento.</p>
           </div>

@@ -2,10 +2,10 @@
 export const CONTENT_SECURITY_POLICY = [
   "default-src 'none'",
   "script-src 'self'",
-  "style-src 'self'",
+  "style-src 'self' https://fonts.googleapis.com",
   "img-src 'self' data:",
   "media-src 'self'",
-  "font-src 'self'",
+  "font-src 'self' https://fonts.gstatic.com",
   "connect-src 'self'",
   "object-src 'none'",
   "base-uri 'none'",

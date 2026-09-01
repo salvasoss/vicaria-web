@@ -7,7 +7,6 @@ export const ProductsPage = () => (
   <>
     <section className="page-hero">
       <div className="container">
-        <span className="eyebrow">Catálogo Vicaria</span>
         <h1 className="page-title"><span className="text-yellow-on-dark">Productos</span> Vicaria</h1>
         <p className="page-intro">Elegí la solución indicada, agregá las cajas que necesites y enviá <strong className="text-yellow-on-dark">todo tu pedido por WhatsApp</strong>. Compra mínima: una caja por producto.</p>
       </div>

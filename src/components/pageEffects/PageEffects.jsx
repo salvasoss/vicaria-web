@@ -49,8 +49,18 @@ export const PageEffects = () => {
         { threshold: 0.12, rootMargin: "0px 0px -35px" }
       );
 
+      // Escalona la aparición de tarjetas dentro de una misma grilla (hasta 6 pasos de 45ms).
+      // El índice se reinicia por contenedor padre: cada grilla (productos, beneficios, línea de tiempo) empieza en 0.
+      const staggerIndexByParent = new Map();
+
       elements.forEach((element) => {
         element.classList.add("reveal-on-scroll");
+        if (element.matches(".product-card, .benefit-card, .timeline-item")) {
+          const parent = element.parentElement;
+          const index = staggerIndexByParent.get(parent) ?? 0;
+          element.style.transitionDelay = `${Math.min(index, 6) * 45}ms`;
+          staggerIndexByParent.set(parent, index + 1);
+        }
         observer.observe(element);
       });
     });

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { QuantityPicker } from "../components/quantityPicker/QuantityPicker";
 import { createWhatsAppUrl } from "../config/business";
 import { FIELD_VALIDATION, sanitizeDigits, validateForm, clearFieldValidity } from "../config/formValidation";
@@ -8,6 +9,7 @@ import { formatPrice, getBoxContent, WHOLESALE_MIN_BOXES } from "../mock/vicaria
 
 export const CartPage = () => {
   const { cartDetails, total, hasPendingPrice, updateQuantity, removeItem } = useCart();
+  const prefersReducedMotion = useReducedMotion();
   const [delivery, setDelivery] = useState("Necesito envío");
   const [wasValidated, setWasValidated] = useState(false);
   const [formError, setFormError] = useState("");
@@ -16,7 +18,6 @@ export const CartPage = () => {
     return (
       <section className="section section--soft">
         <div className="container empty-state">
-          <span className="eyebrow">Tu pedido</span>
           <h2>El carrito está vacío.</h2>
           <p>Explorá nuestros productos y agregá al menos una caja para comenzar tu pedido.</p>
           <Link className="button button--red" to="/productos">Ver productos</Link>
@@ -94,25 +95,38 @@ export const CartPage = () => {
 
   return (
     <>
-      <section className="page-hero cart-hero"><div className="container"><span className="eyebrow">Finalizar compra</span><h1 className="page-title">Tu <span className="text-yellow-on-dark">pedido</span></h1><p className="page-intro">Revisá las cajas, completá tus datos y envianos <strong className="text-yellow-on-dark">todo en un único mensaje</strong> de WhatsApp.</p></div></section>
+      <section className="page-hero cart-hero"><div className="container"><h1 className="page-title">Tu <span className="text-yellow-on-dark">pedido</span></h1><p className="page-intro">Revisá las cajas, completá tus datos y envianos <strong className="text-yellow-on-dark">todo en un único mensaje</strong> de WhatsApp.</p></div></section>
       <section className="section section--soft">
         <div className="container checkout-layout">
           <div className="cart-panel">
             <div className="checkout-heading"><h2>Productos seleccionados</h2><Link to="/productos">Seguir comprando</Link></div>
             <div className="cart-items">
-              {cartDetails.map(({ product, quantity }) => (
-                <article className="cart-item" key={product.id}>
-                  <div className="cart-item__image"><img src={product.image} alt={`Caja de ${product.name}`} /></div>
-                  <div className="cart-item__info">
-                    <span>{product.category}</span>
-                    <h3>{product.name}</h3>
-                    <p>{formatPrice(product.price)}</p>
-                    {getBoxContent(product) && <small>{getBoxContent(product)} por caja</small>}
-                  </div>
-                  <QuantityPicker value={quantity} onChange={(value) => updateQuantity(product.id, value)} label="Cajas" />
-                  <button className="remove-button" type="button" onClick={() => removeItem(product.id)} aria-label={`Eliminar ${product.name}`}>Eliminar</button>
-                </article>
-              ))}
+              <AnimatePresence mode="popLayout" initial={false}>
+                {cartDetails.map(({ product, quantity }) => (
+                  <motion.article
+                    className="cart-item"
+                    key={product.id}
+                    layout={!prefersReducedMotion}
+                    style={{ overflow: "hidden" }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={prefersReducedMotion
+                      ? { opacity: 0 }
+                      : { opacity: 0, height: 0, paddingTop: 0, paddingBottom: 0, borderBottomWidth: 0 }}
+                    transition={{ duration: prefersReducedMotion ? 0.12 : 0.32, ease: [0.23, 1, 0.32, 1] }}
+                  >
+                    <div className="cart-item__image"><img src={product.image} alt={`Caja de ${product.name}`} /></div>
+                    <div className="cart-item__info">
+                      <span>{product.category}</span>
+                      <h3>{product.name}</h3>
+                      <p>{formatPrice(product.price)}</p>
+                      {getBoxContent(product) && <small>{getBoxContent(product)} por caja</small>}
+                    </div>
+                    <QuantityPicker value={quantity} onChange={(value) => updateQuantity(product.id, value)} label="Cajas" />
+                    <button className="remove-button" type="button" onClick={() => removeItem(product.id)} aria-label={`Eliminar ${product.name}`}>Eliminar</button>
+                  </motion.article>
+                ))}
+              </AnimatePresence>
             </div>
             <div className="cart-total">
               <span>Total estimado minorista</span>
@@ -148,16 +162,16 @@ export const CartPage = () => {
               <div className="field"><label htmlFor="checkoutEmail">Email</label><input id="checkoutEmail" name="email" {...FIELD_VALIDATION.email} /></div>
               <div className="field"><label htmlFor="checkoutDocument">DNI *</label><input id="checkoutDocument" name="document" required onInput={sanitizeDigits} {...FIELD_VALIDATION.dni} /><small className="field-hint">Entre 7 y 9 números.</small></div>
               <div className="field field--full"><label htmlFor="checkoutDelivery">Modalidad de entrega *</label><select id="checkoutDelivery" name="delivery" value={delivery} onChange={(event) => setDelivery(event.target.value)}><option>Necesito envío</option><option>Quiero consultar retiro</option></select></div>
-              {delivery === "Necesito envío" && (
-                <>
-                  <div className="field"><label htmlFor="checkoutProvince">Provincia *</label><input id="checkoutProvince" name="province" required {...FIELD_VALIDATION.location} /></div>
-                  <div className="field"><label htmlFor="checkoutCity">Localidad *</label><input id="checkoutCity" name="city" required {...FIELD_VALIDATION.location} /></div>
-                  <div className="field"><label htmlFor="checkoutPostal">Código postal *</label><input id="checkoutPostal" name="postalCode" required onInput={sanitizeDigits} {...FIELD_VALIDATION.postalCode} /><small className="field-hint">4 números.</small></div>
-                  <div className="field"><label htmlFor="checkoutAddress">Calle *</label><input id="checkoutAddress" name="address" required {...FIELD_VALIDATION.street} /></div>
-                  <div className="field"><label htmlFor="checkoutNumber">Número *</label><input id="checkoutNumber" name="addressNumber" required onInput={sanitizeDigits} {...FIELD_VALIDATION.addressNumber} /></div>
+              <div className={`delivery-fields${delivery === "Necesito envío" ? " delivery-fields--open" : ""}`}>
+                <div className="delivery-fields__inner">
+                  <div className="field"><label htmlFor="checkoutProvince">Provincia *</label><input id="checkoutProvince" name="province" required={delivery === "Necesito envío"} {...FIELD_VALIDATION.location} /></div>
+                  <div className="field"><label htmlFor="checkoutCity">Localidad *</label><input id="checkoutCity" name="city" required={delivery === "Necesito envío"} {...FIELD_VALIDATION.location} /></div>
+                  <div className="field"><label htmlFor="checkoutPostal">Código postal *</label><input id="checkoutPostal" name="postalCode" required={delivery === "Necesito envío"} onInput={sanitizeDigits} {...FIELD_VALIDATION.postalCode} /><small className="field-hint">4 números.</small></div>
+                  <div className="field"><label htmlFor="checkoutAddress">Calle *</label><input id="checkoutAddress" name="address" required={delivery === "Necesito envío"} {...FIELD_VALIDATION.street} /></div>
+                  <div className="field"><label htmlFor="checkoutNumber">Número *</label><input id="checkoutNumber" name="addressNumber" required={delivery === "Necesito envío"} onInput={sanitizeDigits} {...FIELD_VALIDATION.addressNumber} /></div>
                   <div className="field"><label htmlFor="checkoutApartment">Piso / departamento</label><input id="checkoutApartment" name="apartment" {...FIELD_VALIDATION.apartment} /></div>
-                </>
-              )}
+                </div>
+              </div>
               <div className="field field--full"><label htmlFor="checkoutNotes">Observaciones</label><textarea id="checkoutNotes" name="notes" placeholder="Referencias del domicilio, horario u otra información útil." {...FIELD_VALIDATION.notes} /></div>
             </div>
             {formError && <p className="form-submit-error" role="alert">{formError}</p>}

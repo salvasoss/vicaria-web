@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { formatPrice, getBoxContent } from "../../mock/vicariaProducts";
@@ -6,6 +7,18 @@ import "./productCard.scss";
 export const ProductCard = ({ product }) => {
   // Cada tarjeta comparte el acceso al detalle y permite sumar una caja directamente.
   const { addItem } = useCart();
+  // Da una confirmación visual breve en el propio botón, además del toast global.
+  const [isAdded, setIsAdded] = useState(false);
+  const addedTimeoutRef = useRef(null);
+
+  useEffect(() => () => clearTimeout(addedTimeoutRef.current), []);
+
+  const handleAddToCart = () => {
+    addItem(product.id, 1);
+    setIsAdded(true);
+    clearTimeout(addedTimeoutRef.current);
+    addedTimeoutRef.current = setTimeout(() => setIsAdded(false), 260);
+  };
 
   return (
     <article className="product-card">
@@ -14,7 +27,6 @@ export const ProductCard = ({ product }) => {
         <span>{product.category}</span>
       </Link>
       <div className="product-card__body">
-        <p className="product-card__kicker">{product.category}</p>
         <h3><Link to={`/productos/${product.id}`}>{product.name}</Link></h3>
         <p className="product-card__subtitle">{product.subtitle}</p>
         <div className="product-card__pack">
@@ -26,7 +38,7 @@ export const ProductCard = ({ product }) => {
         </p>
         <div className="product-card__actions">
           <Link className="button button--outline" to={`/productos/${product.id}`}>Ver detalle</Link>
-          <button className="button button--red" type="button" onClick={() => addItem(product.id, 1)}>Agregar</button>
+          <button className={`button button--red${isAdded ? " is-added" : ""}`} type="button" onClick={handleAddToCart}>Agregar</button>
         </div>
       </div>
     </article>

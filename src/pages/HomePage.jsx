@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
+import { Globe, ShieldCheck, Waves, Wrench } from "lucide-react";
 import { ProductCard } from "../components/productCard/ProductCard";
 import { products } from "../mock/vicariaProducts";
 
 const benefits = [
-  ["Sin desarme", "Soluciones pensadas para actuar dentro del sistema de enfriamiento."],
-  ["No obstruye", "La fórmula trabaja sin bloquear el circuito de refrigeración."],
-  ["Solución permanente", "Una respuesta confiable frente a pérdidas del sistema."],
-  ["Materia prima importada", "Calidad constante respaldada por más de siete décadas."],
+  { icon: Wrench, title: "Sin desarme", text: "Soluciones pensadas para actuar dentro del sistema de enfriamiento." },
+  { icon: Waves, title: "No obstruye", text: "La fórmula trabaja sin bloquear el circuito de refrigeración." },
+  { icon: ShieldCheck, title: "Solución permanente", text: "Una respuesta confiable frente a pérdidas del sistema." },
+  { icon: Globe, title: "Materia prima importada", text: "Calidad constante respaldada por más de siete décadas." },
 ];
 
 export const HomePage = () => {
@@ -21,9 +22,13 @@ export const HomePage = () => {
       </video>
       <div className="home-hero__veil" />
       <div className="container home-hero__content">
-        <div>
-          <span className="hero-badge">Desde 1954</span>
-          <h1>Más de <span className="text-yellow-on-dark">70 años</span> cuidando el corazón de cada motor.</h1>
+        <div className="home-hero__copy">
+          <h1 className="hero-title">
+            <span className="hero-title__stat">
+              <span className="hero-title__lead">Más de</span> <span className="marker-highlight">70 años</span>
+            </span>
+            <span className="hero-title__line">cuidando el corazón de cada motor.</span>
+          </h1>
           <p>
             Productos Vicaria para el sistema de enfriamiento: calidad, experiencia y
             rendimiento para compradores minoristas, comercios y distribuidores.
@@ -32,7 +37,7 @@ export const HomePage = () => {
             <Link className="button button--light" to="/productos">Comprar productos <span aria-hidden="true">→</span></Link>
             <Link className="button hero-secondary" to="/contacto">Soy mayorista</Link>
           </div>
-          <p className="hero-note">Venta mínima de 1 caja · Envíos a todo el país</p>
+          <p className="hero-note">Desde 1954 · Venta mínima de 1 caja · Envíos a todo el país</p>
         </div>
         <div className="hero-products" aria-label="Productos Vicaria">
           {products.map((product, index) => (
@@ -55,14 +60,13 @@ export const HomePage = () => {
     <section className="section section--soft">
       <div className="container">
         <div className="section-heading">
-          <span className="eyebrow">Por qué Vicaria</span>
-          <h2>Una <span className="text-red">solución sencilla</span> para problemas complejos.</h2>
+          <h2>Una <span className="marker-highlight">solución sencilla</span> para problemas complejos.</h2>
           <p>Nuestras fórmulas están desarrolladas para brindar una respuesta práctica y confiable al sistema de enfriamiento.</p>
         </div>
         <div className="benefit-grid">
-          {benefits.map(([title, text], index) => (
+          {benefits.map(({ icon: Icon, title, text }) => (
             <article className="benefit-card" key={title}>
-              <span>0{index + 1}</span>
+              <span className="benefit-card__icon"><Icon aria-hidden="true" strokeWidth={1.75} /></span>
               <h3>{title}</h3>
               <p>{text}</p>
             </article>
@@ -75,7 +79,6 @@ export const HomePage = () => {
       <div className="container">
         <div className="section-heading products-heading">
           <div>
-            <span className="eyebrow">Nuestros productos</span>
             <h2>La fórmula indicada para <span className="text-green">cada necesidad.</span></h2>
           </div>
           <Link className="text-link" to="/productos">Ver catálogo completo <span aria-hidden="true">→</span></Link>
@@ -94,7 +97,6 @@ export const HomePage = () => {
           <span>años de experiencia</span>
         </div>
         <div>
-          <span className="eyebrow">Nuestra historia</span>
           <h2>Una <span className="text-yellow-on-dark">marca familiar</span> que creció junto al mercado automotor.</h2>
           <p>Desde 1954, Vicaria desarrolla productos para el sistema de enfriamiento con una premisa clara: ofrecer calidad a un precio accesible.</p>
           <p>Hoy continuamos esa trayectoria acercando nuestras soluciones a clientes minoristas, casas de repuestos y distribuidores.</p>

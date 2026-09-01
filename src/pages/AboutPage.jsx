@@ -14,7 +14,6 @@ export const AboutPage = () => (
       <img src="/img/motor 4.jpg" alt="Motor de automóvil" />
       <div className="about-hero__veil" />
       <div className="container about-hero__content">
-        <span className="eyebrow">Acerca de Vicaria</span>
         <h1>Una historia que empezó en <span className="text-yellow-on-dark">1954.</span></h1>
         <p>Más de siete décadas acompañando al mercado automotor con soluciones de calidad, experiencia familiar y precios accesibles.</p>
       </div>
@@ -22,14 +21,14 @@ export const AboutPage = () => (
 
     <section className="section">
       <div className="container about-intro">
-        <div><span className="eyebrow">Nuestra esencia</span><h2>Experiencia que se convierte en <span className="text-green">confianza.</span></h2></div>
+        <div><h2>Experiencia que se convierte en <span className="marker-highlight">confianza.</span></h2></div>
         <div className="about-intro__copy"><p>Vicaria es una marca familiar dedicada a productos para el sistema de enfriamiento automotor. Desde sus comienzos trabaja para acercar soluciones prácticas sin comprometer la calidad.</p><p>La utilización de materia prima importada y el conocimiento construido durante más de 70 años forman parte de una identidad que continúa evolucionando.</p></div>
       </div>
     </section>
 
     <section className="section section--soft history-section">
       <div className="container">
-        <div className="section-heading"><span className="eyebrow">Recorrido</span><h2>De <span className="text-red">generación en generación.</span></h2><p>Un recorrido visual por los momentos que definieron la trayectoria de Vicaria.</p></div>
+        <div className="section-heading"><h2>De <span className="text-red">generación en generación.</span></h2><p>Un recorrido visual por los momentos que definieron la trayectoria de Vicaria.</p></div>
         <div className="timeline">
           {milestones.map((item, index) => (
             <article className="timeline-item" key={item.year}>
@@ -43,11 +42,11 @@ export const AboutPage = () => (
 
     <section className="section about-values">
       <div className="container">
-        <div className="section-heading"><span className="eyebrow">Lo que nos guía</span><h2>Calidad, accesibilidad y cercanía.</h2></div>
+        <div className="section-heading"><h2>Calidad, accesibilidad y cercanía.</h2></div>
         <div className="value-grid">
-          <article><strong>01</strong><h3>Calidad</h3><p>Productos desarrollados con materia prima importada y una fórmula perfeccionada con experiencia.</p></article>
-          <article><strong>02</strong><h3>Accesibilidad</h3><p>Soluciones pensadas para ofrecer una relación equilibrada entre rendimiento y precio.</p></article>
-          <article><strong>03</strong><h3>Cercanía</h3><p>Atención directa para compradores particulares, comercios y distribuidores.</p></article>
+          <article><h3>Calidad</h3><p>Productos desarrollados con materia prima importada y una fórmula perfeccionada con experiencia.</p></article>
+          <article><h3>Accesibilidad</h3><p>Soluciones pensadas para ofrecer una relación equilibrada entre rendimiento y precio.</p></article>
+          <article><h3>Cercanía</h3><p>Atención directa para compradores particulares, comercios y distribuidores.</p></article>
         </div>
       </div>
     </section>

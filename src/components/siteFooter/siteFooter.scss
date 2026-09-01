@@ -28,6 +28,7 @@
   line-height: 1.55;
 }
 
+.footer-grid a { transition: color var(--duration-fast) var(--ease-out); }
 .footer-grid a:hover { color: var(--vicaria-yellow); }
 .footer-brand img { width: 220px; margin-bottom: 18px; }
 .footer-brand p { max-width: 300px; }
@@ -40,7 +41,7 @@
 
 .footer-bottom__content { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .footer-credits { display: inline-flex; align-items: center; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
-.footer-credits a { color: #fff; font-weight: 850; letter-spacing: 0.035em; }
+.footer-credits a { color: #fff; font-weight: 850; letter-spacing: 0.035em; transition: color var(--duration-fast) var(--ease-out); }
 .footer-credits a:hover { color: var(--vicaria-yellow); }
 
 @media (max-width: 820px) {

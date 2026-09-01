@@ -94,7 +94,6 @@ export const WholesalePage = () => {
     <>
       <section className="page-hero wholesale-hero">
         <div className="container">
-          <span className="eyebrow">Canal para comercios y distribuidores</span>
           <h1 className="page-title">Comprá Vicaria<br /><span className="text-yellow-on-dark">al por mayor.</span></h1>
           <p className="page-intro">
             El pedido mínimo mayorista es de <strong className="text-yellow-on-dark">10 cajas del mismo producto</strong>.
@@ -106,7 +105,6 @@ export const WholesalePage = () => {
       <section className="section section--soft">
         <div className="container wholesale-layout">
           <aside className="wholesale-aside">
-            <span className="eyebrow">Compra mayorista</span>
             <h2>Un canal directo para hacer crecer tu negocio.</h2>
             <ul className="check-list">
               <li>Compra mínima: 10 cajas de un producto.</li>

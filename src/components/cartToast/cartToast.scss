@@ -23,7 +23,9 @@
 .cart-toast--visible { opacity: 1; pointer-events: auto; transform: none; }
 .cart-toast__check { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; color: var(--vicaria-green-dark); background: #fff; font-weight: 950; }
 .cart-toast p { font-size: 0.88rem; font-weight: 800; line-height: 1.4; }
-.cart-toast button { width: 28px; height: 28px; border: 0; color: #fff; background: transparent; cursor: pointer; font-size: 1.45rem; line-height: 1; }
+.cart-toast button { width: 28px; height: 28px; border: 0; border-radius: 50%; color: #fff; background: transparent; cursor: pointer; font-size: 1.45rem; line-height: 1; transition: transform var(--duration-fast) var(--ease-out), background-color var(--duration-fast) var(--ease-out); }
+.cart-toast button:hover { background: rgba(255, 255, 255, 0.18); }
+.cart-toast button:active { transform: scale(0.94); }
 
 @media (max-width: 620px) {
   .cart-toast { right: 16px; bottom: 88px; }

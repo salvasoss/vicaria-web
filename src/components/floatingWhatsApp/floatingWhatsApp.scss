@@ -12,13 +12,15 @@
   border-radius: 50%;
   background: #25d366;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  transition: transform var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
 }
 
 .floating-whatsapp:hover {
   transform: translateY(-4px) scale(1.04);
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.34);
 }
+
+.floating-whatsapp:active { transform: scale(0.94); }
 
 .floating-whatsapp img {
   width: 100%;
