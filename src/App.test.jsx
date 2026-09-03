@@ -33,7 +33,7 @@ test("mantiene el mínimo mayorista y muestra los cuatro productos vigentes", ()
   expect(products.map((product) => product.name)).toEqual([
     "Limpia Radiadores", "Sella Grietas FK20", "Sella Grietas Súper", "Sella Grietas",
   ]);
-  expect(products[0].price).toBeNull();
+  expect(products[0].price).toBe(93600);
   expect(products[0].boxContent).toBe("24 unidades");
 });
 
@@ -51,6 +51,7 @@ test("mantiene el formulario minorista y agrega la opción mayorista desde 10 ca
 
   const wholesaleLink = screen.getByRole("link", { name: "COMPRA MAYORISTA" });
   expect(wholesaleLink).toBeInTheDocument();
+  expect(screen.getByText(/tu pedido ya califica como mayorista/i)).toBeInTheDocument();
   expect(wholesaleLink.getAttribute("href")).toContain(`cantidad_${products[0].id}=10`);
   expect(wholesaleLink.getAttribute("href")).toContain(`cantidad_${products[1].id}=2`);
   expect(screen.getByRole("heading", { name: /datos del cliente y entrega/i })).toBeInTheDocument();
@@ -58,6 +59,7 @@ test("mantiene el formulario minorista y agrega la opción mayorista desde 10 ca
   fireEvent.click(screen.getAllByRole("button", { name: /restar una caja/i })[0]);
 
   expect(screen.queryByRole("link", { name: "COMPRA MAYORISTA" })).not.toBeInTheDocument();
+  expect(screen.getByText(/te falta 1 caja.*canal mayorista/i)).toBeInTheDocument();
   expect(screen.getByRole("heading", { name: /datos del cliente y entrega/i })).toBeInTheDocument();
 });
 
@@ -109,6 +111,7 @@ test("muestra el acceso mayorista y los otros productos en cada detalle", () => 
   expect(
     screen.getByRole("link", { name: /necesitás precio mayorista.*solicitá una cotización/i })
   ).toBeInTheDocument();
+  expect(screen.getByText(/compra mayorista desde 10 cajas/i)).toBeInTheDocument();
   expect(screen.getByRole("heading", { name: /productos relacionados/i })).toBeInTheDocument();
   products.slice(1).forEach((product) => {
     expect(screen.getAllByRole("link", { name: product.name }).length).toBeGreaterThan(0);
@@ -239,29 +242,11 @@ test("anima y permite cerrar con Escape el menú hamburguesa", () => {
   }
 });
 
-test("no descarga el video cuando se solicita movimiento reducido", () => {
-  const previousMatchMedia = window.matchMedia;
-  window.matchMedia = vi.fn(() => ({
-    matches: true,
-    addEventListener: vi.fn(),
-    removeEventListener: vi.fn(),
-  }));
-  try {
-    const { container, unmount } = render(<App />);
-    expect(container.querySelector("video")).not.toHaveAttribute("src");
-    unmount();
-  } finally {
-    window.matchMedia = previousMatchMedia;
-  }
-});
-
-test("pausa el video cuando la pestaña deja de estar visible", () => {
-  const hidden = vi.spyOn(document, "hidden", "get").mockReturnValue(false);
+test("mantiene el video principal en reproducción automática y sin sonido", () => {
   const { container } = render(<App />);
   const video = container.querySelector("video");
-  expect(video).toHaveAttribute("src", "/videos/videofondoblanco.mp4");
-  video.pause.mockClear();
-  hidden.mockReturnValue(true);
-  fireEvent(document, new Event("visibilitychange"));
-  expect(video.pause).toHaveBeenCalledTimes(1);
+  expect(video).toHaveAttribute("autoplay");
+  expect(video).toHaveAttribute("loop");
+  expect(video).toHaveProperty("muted", true);
+  expect(video.querySelector("source")).toHaveAttribute("src", "/videos/videofondo.mp4");
 });

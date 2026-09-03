@@ -97,7 +97,8 @@ export const WholesalePage = () => {
           <h1 className="page-title">Comprá Vicaria<br /><span className="text-yellow-on-dark">al por mayor.</span></h1>
           <p className="page-intro">
             El pedido mínimo mayorista es de <strong className="text-yellow-on-dark">10 cajas del mismo producto</strong>.
-            Al alcanzar ese mínimo, podés sumar la cantidad que quieras de los demás productos.
+            Al alcanzarlo, accedés a <strong className="text-yellow-on-dark">descuentos por volumen y beneficios comerciales</strong> sujetos a cotización.
+            Además, podés sumar la cantidad que quieras de los demás productos.
           </p>
         </div>
       </section>
@@ -106,10 +107,17 @@ export const WholesalePage = () => {
         <div className="container wholesale-layout">
           <aside className="wholesale-aside">
             <h2>Un canal directo para hacer crecer tu negocio.</h2>
+            <div className="wholesale-benefits-banner">
+              <strong>Beneficios para compras mayoristas</strong>
+              <p>
+                Accedé a descuentos por volumen, cotización personalizada, atención directa y
+                condiciones comerciales especiales.
+              </p>
+            </div>
             <ul className="check-list">
               <li>Compra mínima: 10 cajas de un producto.</li>
               <li>Luego podés sumar desde 1 caja de las otras variedades.</li>
-              <li>Precios mayoristas a coordinar.</li>
+              <li>Descuentos por volumen sujetos a cotización.</li>
               <li>Envíos a todo el país.</li>
               <li>Atención directa por WhatsApp.</li>
               <li>Productos con más de 70 años de trayectoria.</li>
@@ -176,7 +184,10 @@ export const WholesalePage = () => {
               {hasWholesaleMinimum && (
                 <div className="wholesale-minimum-reached" role="status">
                   <strong>Mínimo mayorista alcanzado</strong>
-                  <p>Ya podés agregar desde 1 caja de cualquiera de los otros productos.</p>
+                  <p>
+                    Tu pedido califica para descuentos y beneficios comerciales sujetos a cotización.
+                    También podés agregar desde 1 caja de cualquiera de los otros productos.
+                  </p>
                 </div>
               )}
               {error && <p className="form-error" role="alert">{error}</p>}

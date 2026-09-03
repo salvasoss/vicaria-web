@@ -30,11 +30,26 @@ for (const script of document.querySelectorAll("script")) {
   assert.equal(script.textContent.trim(), "", "No se permiten scripts inline.");
 }
 
-// Confirma que scripts y estilos sean locales y que cada archivo referenciado exista.
+// Exige scripts locales y permite únicamente los enlaces de fuentes autorizados por la CSP.
+const localOrigin = "https://vicaria.invalid";
+const allowedExternalLinks = new Map([
+  ["https://fonts.googleapis.com", new Set(["preconnect", "stylesheet"])],
+  ["https://fonts.gstatic.com", new Set(["preconnect"])],
+]);
+
 for (const element of document.querySelectorAll("script[src], link[href]")) {
   const asset = element.getAttribute("src") || element.getAttribute("href");
-  const url = new URL(asset, "https://vicaria.invalid/");
-  assert.equal(url.origin, "https://vicaria.invalid", "La compilación debe usar recursos propios.");
+  const url = new URL(asset, `${localOrigin}/`);
+
+  if (url.origin !== localOrigin) {
+    const allowedRelations = allowedExternalLinks.get(url.origin);
+    assert.ok(
+      element.tagName === "LINK" && allowedRelations?.has(element.rel),
+      "La compilación contiene un recurso externo no autorizado."
+    );
+    continue;
+  }
+
   const file = resolve(buildDirectory, `.${decodeURIComponent(url.pathname)}`);
   assert.ok(!relative(buildDirectory, file).startsWith(".."), "Ruta de recurso inválida.");
   await access(file);
@@ -50,4 +65,4 @@ const lock = JSON.parse(await readFile("package-lock.json", "utf8"));
 assert.ok(!lock.packages["node_modules/react-scripts"], "No debe reinstalarse Create React App.");
 
 window.close();
-console.log("Producción verificada: recursos locales, CSP, cabeceras y ausencia de archivos de desarrollo.");
+console.log("Producción verificada: recursos autorizados, CSP, cabeceras y ausencia de archivos de desarrollo.");

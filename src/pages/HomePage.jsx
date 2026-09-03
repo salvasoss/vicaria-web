@@ -26,12 +26,13 @@ export const HomePage = () => {
           <h1 className="hero-title">
             <span className="hero-title__stat">
               <span className="hero-title__lead">Más de</span> <span className="marker-highlight">70 años</span>
-            </span>
+            </span>{" "}
             <span className="hero-title__line">cuidando el corazón de cada motor.</span>
           </h1>
           <p>
-            Productos Vicaria para el sistema de enfriamiento: calidad, experiencia y
-            rendimiento para compradores minoristas, comercios y distribuidores.
+            Productos Vicaria para el <strong className="hero-keyword">sistema de enfriamiento</strong>:{" "}
+            <strong className="hero-keyword">calidad, experiencia y rendimiento</strong> para
+            compradores minoristas, comercios y distribuidores.
           </p>
           <div className="hero-actions">
             <Link className="button button--light" to="/productos">Comprar productos <span aria-hidden="true">→</span></Link>

@@ -6,7 +6,7 @@ Fecha: 31 de agosto de 2026. Comprobado con Node 24.19.0 y npm 11.9.0 en Linux.
 
 - `npm audit`: 0 vulnerabilidades conocidas, incluyendo herramientas de desarrollo.
 - `npm run audit:production`: 0 vulnerabilidades conocidas.
-- 53 pruebas automatizadas de formularios, carrito, rutas y controles de seguridad.
+- 52 pruebas automatizadas de formularios, carrito, rutas y controles de seguridad.
 - Compilación y análisis estático sin errores.
 - Instalación reproducible con `npm ci` y scripts de instalación desactivados.
 
@@ -29,8 +29,8 @@ instalación. No es necesario aprobar los antiguos scripts de `core-js`: esos
 paquetes ya no forman parte de esta versión. Si una actualización futura exige
 un script, revisá su procedencia y necesidad antes de habilitarlo.
 
-En producción, la política CSP admite scripts y estilos del propio sitio,
-bloquea objetos incrustados y envíos HTML de formularios y no autoriza código
+En producción, la política CSP admite scripts del propio sitio y limita los
+estilos externos a Google Fonts. Bloquea objetos incrustados, envíos HTML de formularios y no autoriza código
 inline ni `eval`. Los formularios de VICARIA preparan enlaces a WhatsApp con
 JavaScript; no realizan envíos HTML. La CSP se agrega al compilar, no durante el
 desarrollo, donde Vite requiere mecanismos distintos.

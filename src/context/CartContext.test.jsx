@@ -73,7 +73,7 @@ test("ignora nombres, precios y datos personales inyectados en el carrito guarda
   ]);
 });
 
-test("conserva Limpia Radiadores con precio pendiente sin inventar un total", () => {
+test("calcula el precio vigente de Limpia Radiadores", () => {
   window.localStorage.setItem("vicaria-cart", JSON.stringify([
     { productId: 1, quantity: 2 },
   ]));
@@ -82,8 +82,8 @@ test("conserva Limpia Radiadores con precio pendiente sin inventar un total", ()
     return <><output data-testid="pending">{String(cart.hasPendingPrice)}</output><output data-testid="pending-subtotal">{String(cart.cartDetails[0].subtotal)}</output></>;
   };
   render(<CartProvider><PendingPriceProbe /></CartProvider>);
-  expect(screen.getByTestId("pending")).toHaveTextContent("true");
-  expect(screen.getByTestId("pending-subtotal")).toHaveTextContent("null");
+  expect(screen.getByTestId("pending")).toHaveTextContent("false");
+  expect(screen.getByTestId("pending-subtotal")).toHaveTextContent("187200");
 });
 
 test("cerrar el aviso no vuelve a renderizar los consumidores del carrito", () => {

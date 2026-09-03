@@ -86,9 +86,8 @@ Los productos y precios minoristas por caja se encuentran en:
 src/mock/vicariaProducts.js
 ```
 
-Cada producto tiene una propiedad `price`. Los tres Sella Grietas están
-configurados en $93.600 por caja. Limpia Radiadores queda con precio a confirmar.
-Para publicar o cambiar un precio, se utiliza
+Cada producto tiene una propiedad `price`. Los tres Sella Grietas y Limpia
+Radiadores están configurados en $93.600 por caja. Para publicar o cambiar un precio, se utiliza
 un número sin puntos ni símbolo de moneda. Ejemplo:
 
 ```js
@@ -126,8 +125,8 @@ y sanitización automática de los campos exclusivamente numéricos.
 - Reutilizados los textos comunes del catálogo y el formateador de moneda.
 - Carga diferida y decodificación asíncrona de imágenes secundarias. Las fotos
   originales y la paleta se conservan sin modificaciones.
-- Video de inicio pausado fuera de pantalla o con la pestaña oculta; no se
-  descarga si está activada la preferencia de movimiento reducido.
+- Video de fondo conservado en Inicio, con reproducción automática silenciosa,
+  en bucle y compatible con la reproducción integrada de dispositivos móviles.
 - Datos y totales del carrito reutilizados entre renderizados. Cerrar el aviso
   de éxito ya no vuelve a renderizar los consumidores del carrito.
 - Recuperación segura de carritos guardados con productos eliminados, datos

@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 // Datos de la línea de tiempo; cada posición utiliza su imagen de motor correspondiente.
 const milestones = [
   { year: "1954", title: "El comienzo", text: "Nace Vicaria como una marca familiar orientada a resolver necesidades reales del mercado automotor." },
-  { year: "Crecimiento", title: "Más caminos, más clientes", text: "La marca amplía su llegada a comercios, profesionales y compradores de distintas regiones." },
-  { year: "+70 años", title: "Una fórmula que perdura", text: "Décadas de experiencia permiten perfeccionar productos confiables y accesibles." },
+  { year: "Crecimiento", title: "Muchos kilometros, más clientes", text: "La marca amplía su llegada a comercios, profesionales y compradores de todo el pais, recorriendo millones de kilometros." },
+  { year: "+70 años", title: "Una fórmula que perdura", text: "Décadas de experiencia permitieron perfeccionar productos confiables y accesibles." },
   { year: "Hoy", title: "La historia continúa", text: "Vicaria mantiene su esencia y acerca sus soluciones a clientes mayoristas y minoristas." },
 ];
 

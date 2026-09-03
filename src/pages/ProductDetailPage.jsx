@@ -4,7 +4,7 @@ import { QuantityPicker } from "../components/quantityPicker/QuantityPicker";
 import { ProductCard } from "../components/productCard/ProductCard";
 import { useCart } from "../context/CartContext";
 import { createWhatsAppUrl } from "../config/business";
-import { formatPrice, getBoxContent, products } from "../mock/vicariaProducts";
+import { formatPrice, getBoxContent, products, WHOLESALE_MIN_BOXES } from "../mock/vicariaProducts";
 
 export const ProductDetailPage = () => {
   // Busca el producto indicado por la URL y mantiene localmente la cantidad elegida.
@@ -78,6 +78,13 @@ export const ProductDetailPage = () => {
           <div className="product-detail__actions">
             <button className={`button button--red${isAdded ? " is-added" : ""}`} type="button" onClick={handleAddToCart}>Agregar al carrito</button>
             <a className="button button--green" href={createWhatsAppUrl(whatsappMessage)} target="_blank" rel="noopener noreferrer">Pedir por WhatsApp</a>
+          </div>
+          <div className="product-wholesale-benefits">
+            <strong>Compra mayorista desde {WHOLESALE_MIN_BOXES} cajas</strong>
+            <p>
+              Al pedir {WHOLESALE_MIN_BOXES} cajas de este producto accedés a descuentos por
+              volumen, beneficios comerciales y una cotización personalizada.
+            </p>
           </div>
           <Link className="button button--outline wholesale-detail-button" to="/contacto">
             ¿Necesitás precio mayorista? Solicitá una cotización →

@@ -112,6 +112,15 @@
   line-height: 1.65;
 }
 
+.hero-keyword {
+  color: var(--vicaria-yellow);
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-color: var(--vicaria-green);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 5px;
+}
+
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 38px; }
 .hero-actions .button { padding: 18px 26px; font-size: 1rem; box-shadow: 0 16px 34px rgba(0, 0, 0, 0.32); }
 .hero-secondary { color: #fff; border-color: rgba(255, 255, 255, 0.7); background: transparent; }
@@ -124,9 +133,9 @@
   position: relative;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  align-items: end;
-  min-height: 640px;
-  padding-bottom: 34px;
+  align-items: center;
+  min-height: 560px;
+  transform: translateY(-28px);
 }
 .hero-product {
   position: relative;
@@ -275,6 +284,9 @@
 .wholesale-aside { position: sticky; top: 140px; padding: 34px; border-radius: var(--radius); color: #fff; background: var(--ink); }
 .wholesale-aside h2 { margin-bottom: 27px; font-size: 2.2rem; letter-spacing: -0.025em; line-height: 1.05; }
 .wholesale-aside .check-list li { color: rgba(255, 255, 255, 0.7); }
+.wholesale-benefits-banner { margin-bottom: 25px; padding: 17px 18px; border: 1px solid rgba(240, 165, 0, 0.35); border-radius: 13px; background: rgba(240, 165, 0, 0.12); }
+.wholesale-benefits-banner strong { color: var(--vicaria-yellow); font-size: 0.9rem; }
+.wholesale-benefits-banner p { margin-top: 7px; color: rgba(255, 255, 255, 0.78); font-size: 0.8rem; line-height: 1.55; }
 .wholesale-form, .checkout-form, .cart-panel { padding: 38px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; box-shadow: 0 14px 40px rgba(20, 20, 20, 0.08); }
 .form-heading { margin-bottom: 30px; }
 .form-heading > span, .checkout-heading > div > span { color: var(--vicaria-red); font-size: 0.72rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; }
@@ -430,6 +442,9 @@
 .cart-total span { color: var(--muted); }
 .cart-total strong { font-size: 1.6rem; }
 .cart-total > div { display: flex; align-items: flex-end; flex-direction: column; gap: 3px; text-align: right; }
+.cart-wholesale-progress { margin-top: 24px; padding: 18px 20px; border: 1px solid rgba(240, 165, 0, 0.35); border-radius: 14px; background: rgba(240, 165, 0, 0.1); }
+.cart-wholesale-progress strong { color: var(--ink); font-size: 0.94rem; }
+.cart-wholesale-progress p { margin-top: 7px; color: var(--muted); font-size: 0.82rem; line-height: 1.55; }
 .cart-wholesale-callout {
   display: grid;
   gap: 16px;
@@ -452,9 +467,13 @@
 .checkout-form { position: sticky; top: 140px; }
 .checkout-form .button { margin-top: 24px; }
 
+.product-wholesale-benefits { margin-top: 22px; padding: 17px 19px; border-left: 5px solid var(--vicaria-green); border-radius: 0 14px 14px 0; background: rgba(1, 180, 87, 0.09); }
+.product-wholesale-benefits strong { color: var(--vicaria-green-dark); font-size: 0.94rem; }
+.product-wholesale-benefits p { margin-top: 6px; color: var(--muted); font-size: 0.84rem; line-height: 1.55; }
+
 @media (max-width: 1060px) {
   .home-hero__content { grid-template-columns: 1fr; }
-  .hero-products { min-height: 0; margin-top: 36px; padding-bottom: 8px; }
+  .hero-products { min-height: 0; margin-top: 36px; padding-bottom: 8px; transform: none; }
   .hero-product { max-width: 108px; }
   .hero-product--1 { margin-right: -10px; transform: translateY(8px) rotate(-8deg); }
   .hero-product--2 { margin-inline: -5px; transform: translateY(-12px); }

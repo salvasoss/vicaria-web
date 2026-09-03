@@ -30,6 +30,16 @@ export const CartPage = () => {
   const hasWholesaleItem = cartDetails.some(
     ({ quantity }) => quantity >= WHOLESALE_MIN_BOXES
   );
+
+  // Usa el producto con más cajas para mostrar el progreso hacia el canal mayorista.
+  const closestWholesaleItem = cartDetails.reduce((closest, item) =>
+    item.quantity > closest.quantity ? item : closest
+  );
+  const boxesUntilWholesale = Math.max(
+    WHOLESALE_MIN_BOXES - closestWholesaleItem.quantity,
+    0
+  );
+
   // Traslada todos los productos al formulario mayorista mediante parámetros validados allí.
   const wholesaleParams = new URLSearchParams({ origen: "carrito" });
   cartDetails.forEach(({ product, quantity }) => {
@@ -136,11 +146,29 @@ export const CartPage = () => {
               </div>
             </div>
 
+            {!hasWholesaleItem && (
+              <div className="cart-wholesale-progress" role="status">
+                <strong>
+                  {boxesUntilWholesale === 1
+                    ? `Te falta 1 caja de ${closestWholesaleItem.product.name} para acceder al canal mayorista`
+                    : `Te faltan ${boxesUntilWholesale} cajas de ${closestWholesaleItem.product.name} para acceder al canal mayorista`}
+                </strong>
+                <p>
+                  Al llegar a {WHOLESALE_MIN_BOXES} cajas de un mismo producto, podés solicitar
+                  descuentos por volumen, beneficios comerciales y una cotización personalizada.
+                </p>
+              </div>
+            )}
+
             {hasWholesaleItem && (
               <div className="cart-wholesale-callout">
                 <div>
-                  <strong>Tu pedido alcanza la cantidad mayorista</strong>
-                  <p>Podés solicitar una cotización con todas las cantidades de este carrito.</p>
+                  <strong>¡Tu pedido ya califica como mayorista!</strong>
+                  <p>
+                    Alcanzaste las {WHOLESALE_MIN_BOXES} cajas de {closestWholesaleItem.product.name}.
+                    Podés solicitar descuentos por volumen, beneficios comerciales y una cotización
+                    personalizada con todos los productos del carrito.
+                  </p>
                 </div>
                 <Link className="button button--green button--block" to={wholesaleUrl}>
                   COMPRA MAYORISTA
