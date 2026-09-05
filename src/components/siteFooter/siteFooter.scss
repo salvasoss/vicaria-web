@@ -30,7 +30,12 @@
 
 .footer-grid a { transition: color var(--duration-fast) var(--ease-out); }
 .footer-grid a:hover { color: var(--vicaria-yellow); }
-.footer-brand img { width: 220px; margin-bottom: 18px; }
+.footer-brand img {
+  width: 220px;
+  height: auto;
+  margin-bottom: 18px;
+  object-fit: contain;
+}
 .footer-brand p { max-width: 300px; }
 
 .footer-bottom {
