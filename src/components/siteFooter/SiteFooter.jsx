@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 import { BUSINESS, createWhatsAppUrl } from "../../config/business";
+import { SITE_ORIGIN } from "../../config/seo";
 import "./siteFooter.scss";
 
 export const SiteFooter = () => (
-  <footer className="site-footer">
+  <footer className="site-footer" itemScope itemType="https://schema.org/Organization">
+    <meta itemProp="name" content="Vicaria" />
+    <meta itemProp="url" content={SITE_ORIGIN} />
     <div className="container footer-grid">
       <div className="footer-brand">
-        <img src="/img/LOGO VICARIA PNG.png" alt="Vicaria" loading="lazy" decoding="async" />
+        <img itemProp="logo" src="/img/logo-vicaria.png" alt="Logo de Vicaria" width="1707" height="605" loading="lazy" decoding="async" />
         <p>Soluciones para el sistema de enfriamiento automotor desde 1954.</p>
       </div>
       <div>
@@ -22,7 +25,11 @@ export const SiteFooter = () => (
       </div>
       <div>
         <h2>Contacto</h2>
-        <p>{BUSINESS.whatsappDisplay}</p>
+        <p itemProp="contactPoint" itemScope itemType="https://schema.org/ContactPoint">
+          <meta itemProp="telephone" content={`+${BUSINESS.whatsappNumber}`} />
+          <meta itemProp="contactType" content="ventas" />
+          {BUSINESS.whatsappDisplay}
+        </p>
         <p>Envíos a todo el país</p>
         <p>Venta mínima: 1 caja</p>
       </div>

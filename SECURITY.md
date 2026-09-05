@@ -6,7 +6,7 @@ Fecha: 31 de agosto de 2026. Comprobado con Node 24.19.0 y npm 11.9.0 en Linux.
 
 - `npm audit`: 0 vulnerabilidades conocidas, incluyendo herramientas de desarrollo.
 - `npm run audit:production`: 0 vulnerabilidades conocidas.
-- 52 pruebas automatizadas de formularios, carrito, rutas y controles de seguridad.
+- 54 pruebas automatizadas de formularios, carrito, rutas, SEO y controles de seguridad.
 - Compilación y análisis estático sin errores.
 - Instalación reproducible con `npm ci` y scripts de instalación desactivados.
 

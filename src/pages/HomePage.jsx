@@ -42,7 +42,17 @@ export const HomePage = () => {
         </div>
         <div className="hero-products" aria-label="Productos Vicaria">
           {products.map((product, index) => (
-            <img key={product.id} className={`hero-product hero-product--${index + 1}`} src={product.image} alt={`Caja de ${product.name}`} loading="lazy" decoding="async" />
+            <img
+              key={product.id}
+              className={`hero-product hero-product--${index + 1}`}
+              src={product.image}
+              alt={product.imageAlt}
+              width={product.imageWidth}
+              height={product.imageHeight}
+              loading="eager"
+              fetchpriority={index === 1 ? "high" : "auto"}
+              decoding="async"
+            />
           ))}
           <span>Calidad<br /><strong>Vicaria</strong></span>
         </div>
@@ -93,7 +103,14 @@ export const HomePage = () => {
     <section className="section home-story">
       <div className="container home-story__grid">
         <div className="home-story__image">
-          <img src="/img/motor 7.jpg" alt="Motor de automóvil, parte de la trayectoria de Vicaria" loading="lazy" decoding="async" />
+          <img
+            src="/img/historia/motor-vicaria-trayectoria.webp"
+            alt="Motor de automóvil que representa la trayectoria de Vicaria desde 1954"
+            width="1400"
+            height="933"
+            loading="lazy"
+            decoding="async"
+          />
           <strong>70+</strong>
           <span>años de experiencia</span>
         </div>

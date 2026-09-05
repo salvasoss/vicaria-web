@@ -11,6 +11,6 @@ export const FloatingWhatsApp = () => (
     aria-label="Consultar a Vicaria por WhatsApp"
     title="Consultar por WhatsApp"
   >
-    <img src="/img/whatsapp.png" alt="" />
+    <img src="/img/whatsapp.png" alt="" width="102" height="102" />
   </a>
 );

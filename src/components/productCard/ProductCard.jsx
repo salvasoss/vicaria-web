@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
-import { formatPrice, getBoxContent } from "../../mock/vicariaProducts";
+import { formatPrice, getBoxContent, getProductPath } from "../../mock/vicariaProducts";
 import "./productCard.scss";
 
 export const ProductCard = ({ product }) => {
@@ -22,12 +22,19 @@ export const ProductCard = ({ product }) => {
 
   return (
     <article className="product-card">
-      <Link className="product-card__image" to={`/productos/${product.id}`} aria-label={`Ver ${product.name}`}>
-        <img src={product.image} alt={`Caja de ${product.name} Vicaria`} loading="lazy" decoding="async" />
+      <Link className="product-card__image" to={getProductPath(product)} aria-label={`Ver ${product.name}`}>
+        <img
+          src={product.image}
+          alt={product.imageAlt}
+          width={product.imageWidth}
+          height={product.imageHeight}
+          loading="lazy"
+          decoding="async"
+        />
         <span>{product.category}</span>
       </Link>
       <div className="product-card__body">
-        <h3><Link to={`/productos/${product.id}`}>{product.name}</Link></h3>
+        <h3><Link to={getProductPath(product)}>{product.name}</Link></h3>
         <p className="product-card__subtitle">{product.subtitle}</p>
         <div className="product-card__pack">
           <span>Venta mínima: 1 caja</span>
@@ -37,7 +44,7 @@ export const ProductCard = ({ product }) => {
           {formatPrice(product.price)}
         </p>
         <div className="product-card__actions">
-          <Link className="button button--outline" to={`/productos/${product.id}`}>Ver detalle</Link>
+          <Link className="button button--outline" to={getProductPath(product)}>Ver detalle</Link>
           <button className={`button button--red${isAdded ? " is-added" : ""}`} type="button" onClick={handleAddToCart}>Agregar</button>
         </div>
       </div>

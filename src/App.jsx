@@ -17,30 +17,34 @@ import { NotFoundPage } from "./pages/NotFoundPage";
 
 // Define la estructura compartida y relaciona cada URL con su página.
 // BrowserRouter permite navegar sin recargar el sitio completo.
-function App() {
+export const AppContent = ({ hydrateCartFromStorage = true }) => (
+  <CartProvider hydrateFromStorage={hydrateCartFromStorage}>
+    <div className="site-shell">
+      <PageEffects />
+      <SiteHeader />
+      <CartToast />
+      <FloatingWhatsApp />
+      <main>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/productos" element={<ProductsPage />} />
+          <Route path="/productos/:itemId" element={<ProductDetailPage />} />
+          <Route path="/item/:itemId" element={<ProductDetailPage />} />
+          <Route path="/contacto" element={<WholesalePage />} />
+          <Route path="/acerca" element={<AboutPage />} />
+          <Route path="/carrito" element={<CartPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </main>
+      <SiteFooter />
+    </div>
+  </CartProvider>
+);
+
+function App({ hydrateCartFromStorage = true }) {
   return (
     <BrowserRouter>
-      <CartProvider>
-        <div className="site-shell">
-          <PageEffects />
-          <SiteHeader />
-          <CartToast />
-          <FloatingWhatsApp />
-          <main>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/productos" element={<ProductsPage />} />
-              <Route path="/productos/:itemId" element={<ProductDetailPage />} />
-              <Route path="/item/:itemId" element={<ProductDetailPage />} />
-              <Route path="/contacto" element={<WholesalePage />} />
-              <Route path="/acerca" element={<AboutPage />} />
-              <Route path="/carrito" element={<CartPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </main>
-          <SiteFooter />
-        </div>
-      </CartProvider>
+      <AppContent hydrateCartFromStorage={hydrateCartFromStorage} />
     </BrowserRouter>
   );
 }

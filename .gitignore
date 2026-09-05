@@ -5,6 +5,7 @@ node_modules/
 build/
 dist/
 .vite/
+.prerender/
 coverage/
 
 # Variables y datos privados

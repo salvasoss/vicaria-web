@@ -18,7 +18,7 @@ export const CartPage = () => {
     return (
       <section className="section section--soft">
         <div className="container empty-state">
-          <h2>El carrito está vacío.</h2>
+          <h1>El carrito está vacío.</h1>
           <p>Explorá nuestros productos y agregá al menos una caja para comenzar tu pedido.</p>
           <Link className="button button--red" to="/productos">Ver productos</Link>
         </div>
@@ -125,7 +125,7 @@ export const CartPage = () => {
                       : { opacity: 0, height: 0, paddingTop: 0, paddingBottom: 0, borderBottomWidth: 0 }}
                     transition={{ duration: prefersReducedMotion ? 0.12 : 0.32, ease: [0.23, 1, 0.32, 1] }}
                   >
-                    <div className="cart-item__image"><img src={product.image} alt={`Caja de ${product.name}`} /></div>
+                    <div className="cart-item__image"><img src={product.image} alt={product.imageAlt} width={product.imageWidth} height={product.imageHeight} loading="lazy" decoding="async" /></div>
                     <div className="cart-item__info">
                       <span>{product.category}</span>
                       <h3>{product.name}</h3>

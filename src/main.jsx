@@ -1,11 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { createRoot, hydrateRoot } from 'react-dom/client';
 import App from './App.jsx';
 
-// Punto de entrada: monta la aplicación React dentro del elemento principal del HTML.
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+// Hidrata el HTML prerenderizado; en desarrollo monta React desde cero.
+const container = document.getElementById('root');
+const hasPrerenderedContent = container.hasChildNodes();
+const application = (
   <React.StrictMode>
-    <App />
+    <App hydrateCartFromStorage={!hasPrerenderedContent} />
   </React.StrictMode>
 );
+
+if (hasPrerenderedContent) {
+  hydrateRoot(container, application);
+} else {
+  createRoot(container).render(application);
+}

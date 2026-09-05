@@ -2,16 +2,22 @@ import { Link } from "react-router-dom";
 
 // Datos de la línea de tiempo; cada posición utiliza su imagen de motor correspondiente.
 const milestones = [
-  { year: "1954", title: "El comienzo", text: "Nace Vicaria como una marca familiar orientada a resolver necesidades reales del mercado automotor." },
-  { year: "Crecimiento", title: "Muchos kilometros, más clientes", text: "La marca amplía su llegada a comercios, profesionales y compradores de todo el pais, recorriendo millones de kilometros." },
-  { year: "+70 años", title: "Una fórmula que perdura", text: "Décadas de experiencia permitieron perfeccionar productos confiables y accesibles." },
-  { year: "Hoy", title: "La historia continúa", text: "Vicaria mantiene su esencia y acerca sus soluciones a clientes mayoristas y minoristas." },
+  { year: "1954", title: "El comienzo", text: "Nace Vicaria como una marca familiar orientada a resolver necesidades reales del mercado automotor.", image: "/img/historia/vicaria-origenes-automotor.webp", imageWidth: 768, imageHeight: 506, imageAlt: "Motor clásico que representa los comienzos de Vicaria en 1954" },
+  { year: "Crecimiento", title: "Muchos kilómetros, más clientes", text: "La marca amplía su llegada a comercios, profesionales y compradores de todo el país, recorriendo millones de kilómetros.", image: "/img/historia/vicaria-crecimiento-automotor.webp", imageWidth: 450, imageHeight: 300, imageAlt: "Detalle de motor que representa el crecimiento de Vicaria" },
+  { year: "+70 años", title: "Una fórmula que perdura", text: "Décadas de experiencia permitieron perfeccionar productos confiables y accesibles.", image: "/img/historia/vicaria-experiencia-automotor.webp", imageWidth: 1400, imageHeight: 933, imageAlt: "Motor moderno que representa más de 70 años de experiencia Vicaria" },
+  { year: "Hoy", title: "La historia continúa", text: "Vicaria mantiene su esencia y acerca sus soluciones a clientes mayoristas y minoristas.", image: "/img/historia/vicaria-actualidad-automotor.webp", imageWidth: 1400, imageHeight: 933, imageAlt: "Sistema automotor actual acompañado por productos Vicaria" },
 ];
 
 export const AboutPage = () => (
   <>
     <section className="about-hero">
-      <img src="/img/motor 4.jpg" alt="Motor de automóvil" />
+      <img
+        src="/img/historia/vicaria-experiencia-automotor.webp"
+        alt="Motor de automóvil que representa la historia de Vicaria"
+        width="1400"
+        height="933"
+        fetchpriority="high"
+      />
       <div className="about-hero__veil" />
       <div className="container about-hero__content">
         <h1>Una historia que empezó en <span className="text-yellow-on-dark">1954.</span></h1>
@@ -30,9 +36,11 @@ export const AboutPage = () => (
       <div className="container">
         <div className="section-heading"><h2>De <span className="text-red">generación en generación.</span></h2><p>Un recorrido visual por los momentos que definieron la trayectoria de Vicaria.</p></div>
         <div className="timeline">
-          {milestones.map((item, index) => (
+          {milestones.map((item) => (
             <article className="timeline-item" key={item.year}>
-              <div className="timeline-item__image"><img src={`/img/motor ${index + 2}.jpg`} alt="Detalle del mundo automotor" loading="lazy" decoding="async" /></div>
+              <div className="timeline-item__image">
+                <img src={item.image} alt={item.imageAlt} width={item.imageWidth} height={item.imageHeight} loading="lazy" decoding="async" />
+              </div>
               <div className="timeline-item__copy"><span>{item.year}</span><h3>{item.title}</h3><p>{item.text}</p></div>
             </article>
           ))}

@@ -15,7 +15,8 @@
   },
   "scripts": {
     "start": "vite",
-    "build": "npm run lint && vite build && node scripts/check-build.mjs",
+    "build": "npm run lint && vite build && npm run prerender && node scripts/check-build.mjs",
+    "prerender": "vite build --ssr src/entry-server.jsx --outDir .prerender --emptyOutDir && node scripts/prerender.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "eslint . --max-warnings=0",

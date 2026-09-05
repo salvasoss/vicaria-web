@@ -27,19 +27,28 @@ const loadCart = () => {
   }
 };
 
-export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState(loadCart);
+export const CartProvider = ({ children, hydrateFromStorage = true }) => {
+  const [cart, setCart] = useState(() => (hydrateFromStorage ? loadCart() : []));
+  const [isStorageReady, setIsStorageReady] = useState(hydrateFromStorage);
   const [toast, setToast] = useState(null);
   const toastTimer = useRef(null);
 
   useEffect(() => {
+    // Carga el carrito después de hidratar para que el HTML inicial sea estable y rastreable.
+    if (hydrateFromStorage) return;
+    setCart(loadCart());
+    setIsStorageReady(true);
+  }, [hydrateFromStorage]);
+
+  useEffect(() => {
     // Persiste el carrito; los datos personales de los formularios nunca se guardan acá.
+    if (!isStorageReady) return;
     try {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
     } catch {
       // El carrito sigue funcionando si el navegador bloquea el almacenamiento.
     }
-  }, [cart]);
+  }, [cart, isStorageReady]);
 
   useEffect(() => () => window.clearTimeout(toastTimer.current), []);
 

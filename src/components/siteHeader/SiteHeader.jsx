@@ -13,9 +13,7 @@ const navItems = [
 export const SiteHeader = () => {
   // Controla el menú móvil y muestra la cantidad total de cajas del carrito.
   const [open, setOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(() =>
-    typeof window.matchMedia === "function" && window.matchMedia("(max-width: 1050px)").matches
-  );
+  const [isMobile, setIsMobile] = useState(false);
   const { itemCount } = useCart();
 
   useEffect(() => {
@@ -46,7 +44,7 @@ export const SiteHeader = () => {
       <div className="announcement">Envíos a todo el país · Venta mínima: 1 caja</div>
       <div className="nav-wrap">
         <NavLink className="brand" to="/" onClick={() => setOpen(false)} aria-label="Vicaria, ir al inicio">
-          <img src="/img/LOGO VICARIA PNG.png" alt="Vicaria" />
+          <img src="/img/logo-vicaria.png" alt="Vicaria" width="1707" height="605" />
         </NavLink>
 
         <button

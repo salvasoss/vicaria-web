@@ -4,12 +4,20 @@ import { QuantityPicker } from "../components/quantityPicker/QuantityPicker";
 import { ProductCard } from "../components/productCard/ProductCard";
 import { useCart } from "../context/CartContext";
 import { createWhatsAppUrl } from "../config/business";
-import { formatPrice, getBoxContent, products, WHOLESALE_MIN_BOXES } from "../mock/vicariaProducts";
+import {
+  formatPrice,
+  getBoxContent,
+  getProductByRouteParam,
+  getProductPath,
+  products,
+  WHOLESALE_MIN_BOXES,
+} from "../mock/vicariaProducts";
+import { SITE_ORIGIN } from "../config/seo";
 
 export const ProductDetailPage = () => {
   // Busca el producto indicado por la URL y mantiene localmente la cantidad elegida.
   const { itemId } = useParams();
-  const product = products.find((item) => item.id === Number(itemId));
+  const product = getProductByRouteParam(itemId);
   const [quantity, setQuantity] = useState(1);
   const { addItem } = useCart();
   // Da una confirmación visual breve en el propio botón, además del toast global.
@@ -56,19 +64,48 @@ export const ProductDetailPage = () => {
 
   return (
     <>
-      <div className="detail-breadcrumb container">
-        <Link to="/productos">Productos</Link><span aria-hidden="true">/</span><span>{product.name}</span>
-      </div>
-      <section className="product-detail container">
+      <nav
+        className="detail-breadcrumb container"
+        aria-label="Ruta de navegación"
+        itemScope
+        itemType="https://schema.org/BreadcrumbList"
+      >
+        <span itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+          <Link itemProp="item" to="/productos"><span itemProp="name">Productos</span></Link>
+          <meta itemProp="position" content="1" />
+        </span>
+        <span aria-hidden="true">/</span>
+        <span itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+          <span itemProp="name">{product.name}</span>
+          <meta itemProp="position" content="2" />
+        </span>
+      </nav>
+      <section className="product-detail container" itemScope itemType="https://schema.org/Product">
+        <span itemProp="brand" itemScope itemType="https://schema.org/Brand">
+          <meta itemProp="name" content="Vicaria" />
+        </span>
+        <meta itemProp="category" content={product.category} />
         <div className="product-detail__visual">
           <span>{product.category}</span>
-          <img src={product.image} alt={`Caja de ${product.name} Vicaria`} />
+          <img
+            itemProp="image"
+            src={product.image}
+            alt={product.imageAlt}
+            width={product.imageWidth}
+            height={product.imageHeight}
+            fetchpriority="high"
+            decoding="async"
+          />
         </div>
         <div className="product-detail__info">
-          <h1>{product.name}</h1>
+          <h1 itemProp="name">{product.name}</h1>
           <h2><span className="text-green">{product.subtitle}</span></h2>
-          <p className="product-detail__description">{product.description}</p>
-          <div className="product-detail__price">
+          <p className="product-detail__description" itemProp="description">{product.description}</p>
+          <div className="product-detail__price" itemProp="offers" itemScope itemType="https://schema.org/Offer">
+            <meta itemProp="priceCurrency" content="ARS" />
+            <meta itemProp="price" content={String(product.price)} />
+            <meta itemProp="url" content={`${SITE_ORIGIN}${getProductPath(product)}`} />
+            <meta itemProp="itemCondition" content="https://schema.org/NewCondition" />
             <div><small>Precio minorista por caja</small><strong>{formatPrice(product.price)}</strong></div>
             <span>Mínimo 1 caja</span>
           </div>

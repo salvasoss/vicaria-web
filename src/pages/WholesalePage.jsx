@@ -158,7 +158,7 @@ export const WholesalePage = () => {
 
                 return (
                   <label key={product.id} htmlFor={`quantity-${product.id}`}>
-                    <span><img src={product.image} alt="" /><strong>{product.name}</strong></span>
+                    <span><img src={product.image} alt="" width={product.imageWidth} height={product.imageHeight} loading="lazy" decoding="async" /><strong>{product.name}</strong></span>
                     <span className="wholesale-quantity-field">
                       <input
                         id={`quantity-${product.id}`}

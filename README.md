@@ -84,3 +84,23 @@ vicaria-web/
 ├── package.json
 ├── vite.config.js
 └── README.md
+```
+
+---
+
+## SEO and deployment
+
+Each public route is prerendered during `npm run build`, so search engines and
+social networks receive its heading, content, title, description and canonical
+URL without waiting for client-side JavaScript.
+
+SEO configuration is centralized in `src/config/seo.js`. The project also ships
+with a sitemap, crawler rules, legacy URL redirects, Open Graph metadata and
+Schema.org microdata for products, breadcrumbs and the Vicaria organization.
+
+Cloudflare Pages must use:
+
+```text
+Build command: npm run build
+Build output directory: build
+```
