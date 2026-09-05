@@ -262,8 +262,8 @@
 
 /* Cada ítem entra con un pequeño desfasaje respecto al anterior, como una lista real
    y no un bloque que aparece de una sola vez. */
-.check-list li,
-.steps-list li {
+.reveal-on-scroll .check-list li,
+.reveal-on-scroll .steps-list li {
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 380ms var(--ease-out), transform 380ms var(--ease-out);
@@ -571,5 +571,27 @@
       rgba(0, 0, 0, 0.15),
       rgba(0, 0, 0, 0.55)
     );
+  }
+}
+
+/* Evita que elementos invisibles de SEO alteren la grilla del producto. */
+@media (min-width: 821px) {
+  .product-detail__visual {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .product-detail__info {
+    grid-column: 2;
+    grid-row: 1;
+  }
+}
+
+/* En tablet y celular vuelve al diseño apilado. */
+@media (max-width: 820px) {
+  .product-detail__visual,
+  .product-detail__info {
+    grid-column: 1;
+    grid-row: auto;
   }
 }

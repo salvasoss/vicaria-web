@@ -97,8 +97,13 @@ export const ProductDetailPage = () => {
             decoding="async"
           />
         </div>
-        <div className="product-detail__info">
-          <h1 itemProp="name">{product.name}</h1>
+       <div className="product-detail__info">
+        <span itemProp="brand" itemScope itemType="https://schema.org/Brand">
+          <meta itemProp="name" content="Vicaria" />
+        </span>
+        <meta itemProp="category" content={product.category} />
+
+        <h1 itemProp="name">{product.name}</h1>
           <h2><span className="text-green">{product.subtitle}</span></h2>
           <p className="product-detail__description" itemProp="description">{product.description}</p>
           <div className="product-detail__price" itemProp="offers" itemScope itemType="https://schema.org/Offer">
