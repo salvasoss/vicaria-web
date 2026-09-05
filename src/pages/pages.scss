@@ -547,3 +547,29 @@
   .cart-item .quantity-picker { grid-column: 2; align-items: flex-start; justify-self: start; }
   .remove-button { grid-column: 2; justify-self: start; }
 }
+
+/* En celulares se reemplaza el video por un fondo estático para mejorar
+   la legibilidad, el rendimiento y evitar problemas de reproducción. */
+@media (max-width: 425px) {
+  .home-hero {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.45) 0%,
+        rgba(0, 0, 0, 0.78) 100%
+      ),
+      url("/img/fondo-mobile-opcion-2.png") center / cover no-repeat;
+  }
+
+  .home-hero > video {
+    display: none;
+  }
+
+  .home-hero__veil {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.55)
+    );
+  }
+}

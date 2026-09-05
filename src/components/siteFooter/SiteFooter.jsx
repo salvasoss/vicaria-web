@@ -18,7 +18,7 @@ export const SiteFooter = () => (
         <h2>Comprá</h2>
         <Link to="/carrito">Pedido minorista</Link>
         <Link to="/contacto">Consulta mayorista</Link>
-        <a href={createWhatsAppUrl("Hola Vicaria, quisiera hacer una consulta.")} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href={createWhatsAppUrl("Hola, quisiera hacer una consulta.")} target="_blank" rel="noopener noreferrer">WhatsApp</a>
       </div>
       <div>
         <h2>Contacto</h2>

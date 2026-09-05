@@ -5,7 +5,7 @@ import "./floatingWhatsApp.scss";
 export const FloatingWhatsApp = () => (
   <a
     className="floating-whatsapp"
-    href={createWhatsAppUrl("Hola Vicaria, quisiera hacer una consulta.")}
+    href={createWhatsAppUrl("Hola, quisiera hacer una consulta.")}
     target="_blank"
     rel="noopener noreferrer"
     aria-label="Consultar a Vicaria por WhatsApp"

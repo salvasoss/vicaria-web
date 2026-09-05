@@ -45,15 +45,14 @@ export const ProductDetailPage = () => {
 
   // Prepara una consulta legible con el producto y la cantidad antes de abrir WhatsApp.
   const whatsappMessage = [
-    "Hola Vicaria, quiero consultar por este producto:",
-    "",
-    `Producto: ${product.name}`,
-    `Cantidad: ${quantity} caja${quantity === 1 ? "" : "s"}`,
-    `Precio por caja: ${formatPrice(product.price)}`,
-    getBoxContent(product) ? `Contenido: ${getBoxContent(product)} por caja` : null,
-    "",
-    "Quisiera coordinar el pedido y el envío.",
-  ].filter(Boolean).join("\n");
+  "Hola, quiero consultar por este producto:",
+  "",
+  `Producto: ${product.name}`,
+  `Cantidad: ${quantity} caja${quantity === 1 ? "" : "s"}`,
+ `Precio por caja: ${formatPrice(product.price)} (${getBoxContent(product)} x caja)`,
+  "",
+  "Quisiera coordinar el pedido y el envío.",
+].join("\n");
 
   return (
     <>

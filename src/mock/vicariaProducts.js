@@ -8,7 +8,7 @@ const sharedSealantBenefits = [
 ];
 
 const sharedInstructions = [
-  "Disolver el producto en un recipiente pequeño.",
+  "Si la perdida es en el block, tapa de cilindros o camisas, disolver el producto en un recipiente pequeño.",
   "Desconectar la manguera de entrada directa al motor, donde se encuentra el termostato.",
   "Verter el producto por la manguera para que ingrese directamente al circuito.",
   "Volver a colocar la manguera en su posición original y poner el motor en marcha.",
@@ -29,18 +29,20 @@ export const products = [
     subtitle: "Limpieza rápida · Cuida su motor",
     description:
       "Producto para la limpieza del sistema de enfriamiento. Elimina rápidamente óxidos, grasas, barros y otras sustancias contaminantes sin atacar metales, gomas ni plásticos.",
-    image: "/img/limpia radiador.jpg",
+    image: "/img/limpia radiadores.png",
     price: SEALANT_BOX_PRICE,
     boxContent: "24 unidades",
     benefits: [
       "Ayuda a remover óxidos, grasas y barros.",
       "No ataca metales, gomas ni plásticos.",
       "Limpieza rápida del sistema de enfriamiento.",
-      "Formulación sin potasa.",
+      "Formulación sin potasa, a base de Sodas y Fosfatos.",
     ],
     instructions: [
-      "Utilizá el producto siguiendo las indicaciones impresas en el envase.",
-      "Ante cualquier duda sobre la aplicación, consultanos por WhatsApp antes de usarlo.",
+      "Volcar un sobre en el Radiador del auto y 2 sobres en camionetas.",
+      "Luego de 150 km cambiar el agua del radiador.",
+      "Si desea una limpieza rápida, llevar la temperatura a 90°C y dejar actuar durante 25 minutos",
+      "Desagotar y con el motor en frio lavar y volver a llenar.",
     ],
   },
   {
@@ -50,7 +52,7 @@ export const products = [
     subtitle: "Especial para camiones y línea pesada",
     description:
       "Solución sin desarme de motor para pérdidas en tapa de cilindro, block, camisas, radiador de calefacción y radiador de motor. Diseñado especialmente para vehículos de línea pesada.",
-    image: "/img/sella grietas camiones.jpg",
+    image: "/img/sella grietas camiones.png",
     price: SEALANT_BOX_PRICE,
     sachetsPerBox: SACHETS_PER_BOX,
     benefits: sharedSealantBenefits,
@@ -63,7 +65,7 @@ export const products = [
     subtitle: "Fórmula Súper Plus Especial",
     description:
       "Solución sin desarme de motor para pérdidas en tapa de cilindro, block, camisas, radiador de calefacción y radiador de motor. No obstruye el sistema de enfriamiento.",
-    image: "/img/sella grietas super.jpg",
+    image: "/img/sella grietas super.png",
     price: SEALANT_BOX_PRICE,
     sachetsPerBox: SACHETS_PER_BOX,
     benefits: sharedSealantBenefits,
@@ -76,7 +78,7 @@ export const products = [
     subtitle: "Tradicional · Ideal para radiadores plásticos",
     description:
       "Solución sin desarme de motor para pérdidas en tapa de cilindro, block, camisas, radiador de calefacción y radiador de motor. Ideal para radiadores plásticos.",
-    image: "/img/sella grietas.jpg",
+    image: "/img/sella grietas.png",
     price: SEALANT_BOX_PRICE,
     sachetsPerBox: SACHETS_PER_BOX,
     benefits: sharedSealantBenefits,
