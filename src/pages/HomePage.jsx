@@ -4,10 +4,10 @@ import { ProductCard } from "../components/productCard/ProductCard";
 import { products } from "../mock/vicariaProducts";
 
 const benefits = [
-  { icon: Wrench, title: "Sin desarme", text: "Soluciones pensadas para actuar dentro del sistema de enfriamiento." },
-  { icon: Waves, title: "No obstruye", text: "La fórmula trabaja sin bloquear el circuito de refrigeración." },
-  { icon: ShieldCheck, title: "Solución permanente", text: "Una respuesta confiable frente a pérdidas del sistema." },
-  { icon: Globe, title: "Materia prima importada", text: "Calidad constante respaldada por más de siete décadas." },
+  { icon: Wrench, title: "Sellado sin desarme", text: "Los Sella Grietas actúan sobre las pérdidas sin necesidad de desarmar el motor." },
+  { icon: Waves, title: "Limpieza profunda", text: "El Limpia Radiadores elimina rápidamente óxidos, grasas, residuos y sedimentos acumulados." },
+  { icon: ShieldCheck, title: "Cuida los componentes", text: "Su fórmula de limpieza no ataca metales, empaquetaduras, gomas ni tejidos." },
+  { icon: Globe, title: "Múltiples aplicaciones", text: "Para pérdidas en tapa de cilindro, block, camisas, radiador de calefacción y radiador del motor." },
 ];
 
 export const HomePage = () => {
@@ -30,9 +30,10 @@ export const HomePage = () => {
             <span className="hero-title__line">cuidando el corazón de cada motor.</span>
           </h1>
           <p>
-            Productos Vicaria para el <strong className="hero-keyword">sistema de enfriamiento</strong>:{" "}
-            <strong className="hero-keyword">calidad, experiencia y rendimiento</strong> para
-            compradores minoristas, comercios y distribuidores.
+            Soluciones Vicaria para <strong className="hero-keyword">sellar perdidas del motor</strong>{" "} y 
+            <strong className="hero-keyword"> mantener limpio el sistema de refrigeración: </strong>{" "}
+            calidad, experiencia y rendimiento para compradores {" "}
+            <strong className="hero-keyword">minoristas, comercios y distribuidores.</strong>
           </p>
           <div className="hero-actions">
             <Link className="button button--light" to="/productos">Comprar productos <span aria-hidden="true">→</span></Link>
@@ -71,8 +72,8 @@ export const HomePage = () => {
     <section className="section section--soft">
       <div className="container">
         <div className="section-heading">
-          <h2>Una <span className="marker-highlight">solución sencilla</span> para problemas complejos.</h2>
-          <p>Nuestras fórmulas están desarrolladas para brindar una respuesta práctica y confiable al sistema de enfriamiento.</p>
+          <h2> Fórmulas confiables para proteger tu motor.</h2>
+          <p>Productos desarrollados para sellar pérdidas y eliminar óxidos, grasas y sedimentos del circuito de refrigeración, sin afectar sus componentes.</p>
         </div>
         <div className="benefit-grid">
           {benefits.map(({ icon: Icon, title, text }) => (
@@ -116,7 +117,7 @@ export const HomePage = () => {
         </div>
         <div>
           <h2>Una <span className="text-yellow-on-dark">marca familiar</span> que creció junto al mercado automotor.</h2>
-          <p>Desde 1954, Vicaria desarrolla productos para el sistema de enfriamiento con una premisa clara: ofrecer calidad a un precio accesible.</p>
+          <p>Desde 1954, Vicaria desarrolla soluciones prácticas y confiables para sellar pérdidas en componentes del motor y radiadores, además de limpiar y mantener el circuito de refrigeración.</p>
           <p>Hoy continuamos esa trayectoria acercando nuestras soluciones a clientes minoristas, casas de repuestos y distribuidores.</p>
           <Link className="button button--red" to="/acerca">Conocer Vicaria</Link>
         </div>

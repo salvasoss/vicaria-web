@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
-import { formatPrice, getBoxContent, getProductPath } from "../../mock/vicariaProducts";
+import { formatPrice, getBoxContent, getProductPath, getUnitPrice } from "../../mock/vicariaProducts";
 import "./productCard.scss";
 
 export const ProductCard = ({ product }) => {
@@ -40,9 +40,23 @@ export const ProductCard = ({ product }) => {
           <span>Venta mínima: 1 caja</span>
           {getBoxContent(product) && <span>{getBoxContent(product)} por caja</span>}
         </div>
-        <p className={`product-card__price ${product.price === null ? "product-card__price--pending" : ""}`}>
-          {formatPrice(product.price)}
-        </p>
+        <div className="product-card__prices">
+        <div className="product-card__price-item">
+          <small>Precio por caja</small>
+          <p className={`product-card__price ${product.price === null ? "product-card__price--pending" : ""}`}>
+            {formatPrice(product.price)}
+          </p>
+        </div>
+
+        {product.price !== null && (
+          <div className="product-card__price-item">
+            <small>Precio por sobre</small>
+            <p className="product-card__price">
+              {formatPrice(getUnitPrice(product))}
+            </p>
+          </div>
+        )}
+      </div>
         <div className="product-card__actions">
           <Link className="button button--outline" to={getProductPath(product)}>Ver detalle</Link>
           <button className={`button button--red${isAdded ? " is-added" : ""}`} type="button" onClick={handleAddToCart}>Agregar</button>

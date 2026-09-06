@@ -28,7 +28,17 @@ export const AboutPage = () => (
     <section className="section">
       <div className="container about-intro">
         <div><h2>Experiencia que se convierte en <span className="marker-highlight">confianza.</span></h2></div>
-        <div className="about-intro__copy"><p>Vicaria es una marca familiar dedicada a productos para el sistema de enfriamiento automotor. Desde sus comienzos trabaja para acercar soluciones prácticas sin comprometer la calidad.</p><p>La utilización de materia prima importada y el conocimiento construido durante más de 70 años forman parte de una identidad que continúa evolucionando.</p></div>
+        <div className="about-intro__copy">
+          <p> 
+             Vicaria es una marca familiar argentina que desde 1954 desarrolla soluciones prácticas para el cuidado 
+             y mantenimiento del motor. Sus Sella Grietas están formulados para actuar sobre pérdidas en tapa de cilindro, 
+             block, camisas, radiador de calefacción y radiador del motor.
+          </p> 
+          <p>
+            El Limpia Radiadores elimina rápidamente óxidos, grasas y sedimentos acumulados sin afectar metales, empaquetaduras, gomas ni tejidos. 
+            Más de 70 años de experiencia y el uso de materia prima importada respaldan la calidad y confiabilidad de cada producto.
+          </p>
+        </div>
       </div>
     </section>
 

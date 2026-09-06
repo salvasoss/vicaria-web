@@ -11,6 +11,7 @@ import {
   getProductPath,
   products,
   WHOLESALE_MIN_BOXES,
+  getUnitPrice
 } from "../mock/vicariaProducts";
 import { SITE_ORIGIN } from "../config/seo";
 
@@ -111,7 +112,22 @@ export const ProductDetailPage = () => {
             <meta itemProp="price" content={String(product.price)} />
             <meta itemProp="url" content={`${SITE_ORIGIN}${getProductPath(product)}`} />
             <meta itemProp="itemCondition" content="https://schema.org/NewCondition" />
-            <div><small>Precio minorista por caja</small><strong>{formatPrice(product.price)}</strong></div>
+            <div>
+              <small>Precio minorista por caja</small>
+              <strong>{formatPrice(product.price)}</strong>
+
+              {product.price !== null && (
+                <>
+                  <small className="product-detail__unit-label">
+                    Precio por sobre
+                  </small>
+
+                  <strong>
+                    {formatPrice(getUnitPrice(product))}
+                  </strong>
+                </>
+              )}
+            </div>
             <span>Mínimo 1 caja</span>
           </div>
           {getBoxContent(product) && <p className="product-detail__pack">Cada caja contiene <strong>{getBoxContent(product)}</strong> de {product.name}.</p>}
@@ -154,7 +170,7 @@ export const ProductDetailPage = () => {
         <div className="container">
           <div className="section-heading related-products__heading">
             <h2>Productos <span className="text-green">relacionados.</span></h2>
-            <p>Conocé los demás productos Vicaria para el sistema de enfriamiento.</p>
+            <p>Conocé los demás productos Vicaria.</p>
           </div>
           <div className="product-grid">
             {relatedProducts.map((relatedProduct) => (

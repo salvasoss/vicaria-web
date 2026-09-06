@@ -14,7 +14,7 @@ const sharedInstructions = [
   "Volver a colocar la manguera en su posición original y poner el motor en marcha.",
 ];
 
-const SEALANT_BOX_PRICE = 93600;
+const SEALANT_BOX_PRICE = 84000;
 // Una solicitud es mayorista cuando un mismo producto alcanza esta cantidad.
 export const WHOLESALE_MIN_BOXES = 10;
 const SACHETS_PER_BOX = 24;
@@ -34,7 +34,7 @@ export const products = [
     imageWidth: 576,
     imageHeight: 1446,
     imageAlt: "Caja de Limpia Radiadores Vicaria para el sistema de enfriamiento",
-    price: SEALANT_BOX_PRICE,
+    price: 93600,
     boxContent: "24 unidades",
     benefits: [
       "Ayuda a remover óxidos, grasas y barros.",
@@ -88,9 +88,9 @@ export const products = [
     slug: "sella-grietas-tradicional",
     category: "Línea tradicional",
     name: "Sella Grietas",
-    subtitle: "Tradicional · Ideal para radiadores plásticos",
+    subtitle: "Tradicional · No obstruye el sistema de enfriamiento",
     description:
-      "Solución sin desarme de motor para pérdidas en tapa de cilindro, block, camisas, radiador de calefacción y radiador de motor. Ideal para radiadores plásticos.",
+      "Solución sin desarme de motor para pérdidas en tapa de cilindro, block, camisas, radiador de calefacción, radiador de motor y tapa de cilindros fuera del vehiculo.",
     image: "/img/productos/sella-grietas-tradicional-vicaria.webp",
     imageWidth: 590,
     imageHeight: 1449,
@@ -122,3 +122,7 @@ const currencyFormatter = new Intl.NumberFormat("es-AR", {
 // Formatea precios en pesos argentinos o avisa cuando todavía no fueron definidos.
 export const formatPrice = (price) =>
   price === null ? "Precio por caja a confirmar" : currencyFormatter.format(price);
+
+// Calcula automáticamente el precio individual según los 24 sobres de cada caja.
+export const getUnitPrice = (product) =>
+  product.price === null ? null : product.price / SACHETS_PER_BOX;
