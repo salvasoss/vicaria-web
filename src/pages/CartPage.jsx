@@ -2,13 +2,14 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { QuantityPicker } from "../components/quantityPicker/QuantityPicker";
-import { createWhatsAppUrl } from "../config/business";
 import { FIELD_VALIDATION, sanitizeDigits, validateForm, clearFieldValidity } from "../config/formValidation";
 import { useCart } from "../context/CartContext";
+import { useWhatsAppContact } from "../context/WhatsAppContactContext";
 import { formatPrice, getBoxContent, WHOLESALE_MIN_BOXES } from "../mock/vicariaProducts";
 
 export const CartPage = () => {
   const { cartDetails, total, hasPendingPrice, updateQuantity, removeItem } = useCart();
+  const { openWhatsAppSelector } = useWhatsAppContact();
   const prefersReducedMotion = useReducedMotion();
   const [delivery, setDelivery] = useState("Necesito envío");
   const [wasValidated, setWasValidated] = useState(false);
@@ -100,7 +101,7 @@ export const CartPage = () => {
       "Quisiera coordinar el pago y confirmar el pedido.",
     ].join("\n");
 
-    window.open(createWhatsAppUrl(message), "_blank", "noopener,noreferrer");
+    openWhatsAppSelector(message);
   };
 
   return (

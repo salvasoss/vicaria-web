@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.scss";
 import "./pages/pages.scss";
 import { CartProvider } from "./context/CartContext";
+import { WhatsAppContactProvider } from "./context/WhatsAppContactContext";
 import { SiteHeader } from "./components/siteHeader/SiteHeader";
 import { SiteFooter } from "./components/siteFooter/SiteFooter";
 import { PageEffects } from "./components/pageEffects/PageEffects";
@@ -17,27 +18,54 @@ import { NotFoundPage } from "./pages/NotFoundPage";
 
 // Define la estructura compartida y relaciona cada URL con su página.
 // BrowserRouter permite navegar sin recargar el sitio completo.
-export const AppContent = ({ hydrateCartFromStorage = true }) => (
+export const AppContent = ({
+  hydrateCartFromStorage = true,
+}) => (
   <CartProvider hydrateFromStorage={hydrateCartFromStorage}>
-    <div className="site-shell">
-      <PageEffects />
-      <SiteHeader />
-      <CartToast />
-      <FloatingWhatsApp />
-      <main>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/productos" element={<ProductsPage />} />
-          <Route path="/productos/:itemId" element={<ProductDetailPage />} />
-          <Route path="/item/:itemId" element={<ProductDetailPage />} />
-          <Route path="/contacto" element={<WholesalePage />} />
-          <Route path="/acerca" element={<AboutPage />} />
-          <Route path="/carrito" element={<CartPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </main>
-      <SiteFooter />
-    </div>
+    <WhatsAppContactProvider>
+      <div className="site-shell">
+        <PageEffects />
+        <SiteHeader />
+        <CartToast />
+        <FloatingWhatsApp />
+
+        <main>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route
+              path="/productos"
+              element={<ProductsPage />}
+            />
+            <Route
+              path="/productos/:itemId"
+              element={<ProductDetailPage />}
+            />
+            <Route
+              path="/item/:itemId"
+              element={<ProductDetailPage />}
+            />
+            <Route
+              path="/contacto"
+              element={<WholesalePage />}
+            />
+            <Route
+              path="/acerca"
+              element={<AboutPage />}
+            />
+            <Route
+              path="/carrito"
+              element={<CartPage />}
+            />
+            <Route
+              path="*"
+              element={<NotFoundPage />}
+            />
+          </Routes>
+        </main>
+
+        <SiteFooter />
+      </div>
+    </WhatsAppContactProvider>
   </CartProvider>
 );
 

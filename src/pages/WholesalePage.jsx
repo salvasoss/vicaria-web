@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { createWhatsAppUrl } from "../config/business";
 import { FIELD_VALIDATION, sanitizeDigits, validateForm, clearFieldValidity } from "../config/formValidation";
 import { isValidQuantity } from "../config/quantities";
+import { useWhatsAppContact } from "../context/WhatsAppContactContext";
 import { products, WHOLESALE_MIN_BOXES } from "../mock/vicariaProducts";
 
 // Recupera las cantidades enviadas desde el carrito y descarta parámetros manipulados.
@@ -18,6 +18,7 @@ const createInitialQuantities = (searchParams) =>
 
 export const WholesalePage = () => {
   const [searchParams] = useSearchParams();
+  const { openWhatsAppSelector } = useWhatsAppContact();
   const [quantities, setQuantities] = useState(() => createInitialQuantities(searchParams));
   const [error, setError] = useState("");
   const [wasValidated, setWasValidated] = useState(false);
@@ -87,7 +88,7 @@ export const WholesalePage = () => {
       "Quisiera recibir la cotización mayorista y coordinar la entrega.",
     ].join("\n");
 
-    window.open(createWhatsAppUrl(message), "_blank", "noopener,noreferrer");
+    openWhatsAppSelector(message);
   };
 
   return (

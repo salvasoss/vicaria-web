@@ -30,6 +30,43 @@
 
 .footer-grid a { transition: color var(--duration-fast) var(--ease-out); }
 .footer-grid a:hover { color: var(--vicaria-yellow); }
+.footer-whatsapp-button {
+  display: block;
+  margin-bottom: 10px;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  text-align: left;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.footer-whatsapp-button:hover {
+  color: var(--vicaria-yellow);
+}
+
+.footer-whatsapp-button:focus-visible {
+  outline: 3px solid var(--vicaria-yellow);
+  outline-offset: 3px;
+}
+
+.footer-contact {
+  margin-bottom: 14px !important;
+}
+
+.footer-contact strong {
+  display: block;
+  color: #fff;
+  font-size: 0.82rem;
+}
+
+.footer-contact a {
+  margin-bottom: 0;
+}
+
 .footer-brand img {
   width: 220px;
   height: auto;

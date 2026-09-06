@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { QuantityPicker } from "../components/quantityPicker/QuantityPicker";
 import { ProductCard } from "../components/productCard/ProductCard";
 import { useCart } from "../context/CartContext";
-import { createWhatsAppUrl } from "../config/business";
+import { useWhatsAppContact } from "../context/WhatsAppContactContext";
 import {
   formatPrice,
   getBoxContent,
@@ -21,6 +21,7 @@ export const ProductDetailPage = () => {
   const product = getProductByRouteParam(itemId);
   const [quantity, setQuantity] = useState(1);
   const { addItem } = useCart();
+  const { openWhatsAppSelector } = useWhatsAppContact();
   // Da una confirmación visual breve en el propio botón, además del toast global.
   const [isAdded, setIsAdded] = useState(false);
   const addedTimeoutRef = useRef(null);
@@ -134,7 +135,15 @@ export const ProductDetailPage = () => {
           <QuantityPicker value={quantity} onChange={setQuantity} />
           <div className="product-detail__actions">
             <button className={`button button--red${isAdded ? " is-added" : ""}`} type="button" onClick={handleAddToCart}>Agregar al carrito</button>
-            <a className="button button--green" href={createWhatsAppUrl(whatsappMessage)} target="_blank" rel="noopener noreferrer">Pedir por WhatsApp</a>
+            <button
+              className="button button--green"
+              type="button"
+              onClick={() =>
+                openWhatsAppSelector(whatsappMessage)
+              }
+            >
+              Pedir por WhatsApp
+            </button>
           </div>
           <div className="product-wholesale-benefits">
             <strong>Compra mayorista desde {WHOLESALE_MIN_BOXES} cajas</strong>
