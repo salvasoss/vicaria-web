@@ -37,7 +37,7 @@ export const HomePage = () => {
           </p>
           <div className="hero-actions">
             <Link className="button button--light" to="/productos">Comprar productos <span aria-hidden="true">→</span></Link>
-            <Link className="button hero-secondary" to="/contacto">Soy mayorista</Link>
+            <Link className="button hero-secondary" to="/contacto">Venta por mayor</Link>
           </div>
           <p className="hero-note">Desde 1954 · Venta mínima de 1 caja · Envíos a todo el país</p>
         </div>

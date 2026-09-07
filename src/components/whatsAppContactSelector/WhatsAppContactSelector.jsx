@@ -59,14 +59,8 @@ export const WhatsAppContactSelector = ({
         <div className="whatsapp-selector__heading">
           <span>Contacto directo</span>
 
-          <h2 id={titleId}>
-            ¿Con quién querés comunicarte?
-          </h2>
-
-          <p>
-            Elegí una persona para continuar con tu mensaje por
-            WhatsApp.
-          </p>
+          <h2 id={titleId}>¿A qué número querés escribir?</h2>
+          <p>Elegí un número para continuar con tu mensaje por WhatsApp.</p>
         </div>
 
         <div className="whatsapp-selector__options">
@@ -84,9 +78,8 @@ export const WhatsAppContactSelector = ({
                 height="48"
               />
 
-              <span>
-                <strong>{contact.name}</strong>
-                <small>{contact.whatsappDisplay}</small>
+              <span className="whatsapp-selector__number">
+                {contact.whatsappDisplay}
               </span>
 
               <b aria-hidden="true">→</b>

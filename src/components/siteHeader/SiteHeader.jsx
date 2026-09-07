@@ -6,7 +6,7 @@ import "./siteHeader.scss";
 const navItems = [
   ["/", "Inicio"],
   ["/productos", "Productos"],
-  ["/contacto", "Mayoristas"],
+  ["/contacto", "Ventas por mayor"],
   ["/acerca", "Acerca de Vicaria"],
 ];
 
